@@ -1,0 +1,39 @@
+/* .button-group {
+    margin: 2%;
+    height: 30px;
+} */
+
+.img-fluid {
+    position: absolute;
+}
+/* .btn-warning {
+    float: left;
+}
+
+.btn-secondary{
+    float: right;
+} */
+
+.card {
+    margin: 2%;
+}
+
+#start {
+    width: 100%;
+}
+
+.bg-warning {
+    background-color: yellow;
+}
+
+
+@media(min-width: 500px){
+    #offence{
+        max-width: 50%;
+        float: left;
+    }
+    #defence{
+        max-width: 50%;
+        float: left;
+    }
+}
