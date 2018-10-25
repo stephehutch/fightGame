@@ -60,7 +60,7 @@ $(document).ready(function () {
                     defenderChosen = true;
 
                     if (defenderChosen) {
-                        $("#instuctions").text("Tap to kill!");
+                        $("#instuctions").text("Tap your apponent to attack!");
                         //console.log ("defencer chosen") 
                         $("#defence .card").click(function () {
                             // console.log("Kill time");
@@ -72,8 +72,8 @@ $(document).ready(function () {
                             // console.log("CPU health: " + cpuHp)
                             // console.log("Your Health: " + playerHp)
 
-                            // console.log("You attack for " + playerHit + " damage")
-                            // console.log("CPU attacks for " + cpuHit + " damage")
+                            $("#playerAttack").text("You attack for " + playerHit + " damage")
+                            $("#cpuAttack").text("Your apponent attacks for " + cpuHit + " damage")
 
                             $('#offence .Hp').text(playerHp)
                             $("#offence .Pl").text(playerPl)
@@ -96,6 +96,7 @@ $(document).ready(function () {
 
                             if (cpuHp < 0 && playerHp > 0 ) {
                                 $("#defence").empty();
+                                $("#instuctions").text("You Win!");
                                 console.log(playerHp);
                                     if (recovery > 161) {
                                         playerHp = 160
