@@ -25,7 +25,12 @@
 .bg-warning {
     background-color: yellow;
 }
-
+#instuctions {
+ height: 40px;
+ background-color: black;
+ position: relative;
+ z-index: 5;
+}
 
 @media(min-width: 500px){
     #offence{
@@ -37,3 +42,7 @@
         float: left;
     }
 }
+
+/* #offence .Hp {
+    font-size: 300%
+} */
