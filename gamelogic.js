@@ -10,13 +10,14 @@ $(document).ready(function () {
     $("#instuctions").text("Chose your Assassin");
 
     $(".card").click(function () {
-        // console.log("card clicked")
+        //if there is not already a charcter in the offence div promt user to chose thier character
+     
         if (playerChosen) {
 
             return false;
 
         }
-        //if charecter is selected copy card to offence div from empty chosen card from "start" div.
+        //if charecter is selected move the card to "#offence" div from "#start" div.
         $(this).appendTo("#offence");
         $(this).addClass("text-white bg-warning");
 
@@ -25,17 +26,11 @@ $(document).ready(function () {
         let playerPl = Number($("#offence .Pl").attr("value"));
         let playerBPl = Number($("#offence .basePl").attr("value"));
 
-        // console.log("you")
-        // console.log("Your Health: " + playerHp)
-        // console.log("Power: " + playerPl);
-        // console.log("Base Power" + playerBPl);
-
         playerChosen = true
 
         //Allow player to chose an apponent
         if (playerChosen = true) {
             $("#instuctions").text("Chose an opponent");
-            //console.log("player is chosen")
 
             //mover chosen fighter to defence div
             $("#start .card").click(function () {
@@ -50,27 +45,19 @@ $(document).ready(function () {
                     let cpuPl = Number($("#defence .Pl").attr("value"));
                     let cpuBPl = Number($("#defence .basePl").attr("value"));
 
-                    // console.log("them")
-                    // console.log("Your Health: " + cpuHp)
-                    // console.log("Power: " + cpuPl);
-                    // console.log("Base Power" + cpuBPl);
-
-                    // console.log(typeof (cpuHp))
 
                     defenderChosen = true;
 
                     if (defenderChosen) {
                         $("#instuctions").text("Tap your apponent to attack!");
-                        //console.log ("defencer chosen") 
                         $("#defence .card").click(function () {
-                            // console.log("Kill time");
+
+                            // on the attack button have the defenders hp go down by a function of the players power level.
+                            // and vise versa 
 
                             let playerHit = Math.floor(Math.random() * playerPl) + playerBPl;
-
                             let cpuHit = Math.floor(Math.random() * cpuPl) + cpuBPl;
 
-                            // console.log("CPU health: " + cpuHp)
-                            // console.log("Your Health: " + playerHp)
 
                             $("#playerAttack").text("You attack for " + playerHit + " damage")
                             $("#cpuAttack").text("Your apponent attacks for " + cpuHit + " damage")
@@ -86,6 +73,8 @@ $(document).ready(function () {
 
                             playerHp = playerHp - cpuHit;
                             cpuHp = cpuHp - playerHit;
+
+                              // increase the players base power level
                             playerBPl++;
                             recoveryCounter++;
 
@@ -95,21 +84,32 @@ $(document).ready(function () {
                             // console.log("-----------------------")
 
                             if (cpuHp < 0 && playerHp > 0 ) {
+                                 // if the defender is defeated empty the deffence and attack divs.
                                 $("#defence").empty();
+                                $("#playerAttack").empty();
+                                $("#cpuAttack").empty();
+
                                 $("#instuctions").text("You Win!");
+
+                                 // reset some or all of the players hp.
                                 console.log(playerHp);
                                     if (recovery > 161) {
                                         playerHp = 160
                                     } else {
                                 playerHp = recovery; 
                                     }
+
                                  console.log(playerHp);
                                 $('#offence .Hp').text(playerHp);
+                                // player can now chose a new defender
                                 defenderChosen = false;
 
                             } else if (playerHp < 0) {
                                 $("#offence").empty();
+                                // if the player is defeated inform the player to reset the game
                                 $("#instuctions").text("You were killed. Tap here to reset");
+                                $("#playerAttack").empty();
+                                $("#cpuAttack").empty();
                                 $("#instuctions").click(function () {
                                     location.reload()
                                 });
@@ -120,44 +120,22 @@ $(document).ready(function () {
 
                     }
 
-
-
-                    //   playerHp =- Math.floor(Math.random() * cpuPl) + cpuBPl;
-                    //   console.log(playerHp)
-                    //   $( ".hp #offence").text(playerHp)
-
-                    //   if (playerHp === 0){
-                    //   $( "#offence" ).empty();
-                    //   playerChosen = false
-                    //   }
-
-
                 }
             });
         };
 
-        /*
-                    //if there is not already a charcter in the defender div promt user to chose a character to fight against
-        
                     
+
                         
-                        
-                        
-                        
-                        
-        
-                        // on the attack button have the defenders hp go down by some function of the players power level.
-                        // if the defender is defeated empty the deffence div. Do not relace the card.
+                       
                         // if there are no more characters to fight inform the player to reset the game.
                         // if there are characters to fight...
-                        // increase the players power level
-                        // reset some or all of the players hp (Optional).
+                      
+                       
                         // Prompt the player to chose another fighter to attack.
         
                         //on that same click, (but only after the other function is completed) have the players hp go down by some function of the defenders power level.
-                        // if the player is defeated inform the player to reset the same
-                    }
-                    }
-        */
+                        
+          
     });
 });
